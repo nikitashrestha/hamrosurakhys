@@ -1,0 +1,16 @@
+body{
+	padding:0;
+	margin:auto;
+}
+#title{
+	background-color: #ddd6d1;
+	padding-top: 9%;
+	padding-left: 20%;
+	margin:auto;
+}
+#form{
+	margin: auto;
+	padding-top: 2%; 
+	padding-left: 7%;
+	border: 1pt solid #4e6547;
+}

@@ -1,66 +1,65 @@
 <?php
-    $servername = "localhost";
-    $user = "root";
-    $pass = "";
-    $db="main";
-    $conn=mysqli_connect($servername, $user, $pass, $db);
+   require'db-connect.php';
   
-if($conn)
-{
+
 	$sendNum = $_POST['contact'];
-	$meesgae = $_POST['message'];
-	$message = nl2br($meesgae);
+	$mesg = $_POST['message'];
+	$message = nl2br($mesg);
 	$lat ="";
 	$lon ="";
+	$lat1="";
+	$long1="";
 
-
-	for($i=0;$i<strlen($meesgae);$i++)
-	{
-		if($meesgae[$i]==',')
-		{
-			while($meesgae[$i]!="\n")
-			{
-				$lat=$lat.$meesgae[$i+1];
+//separating latitude and longitude from message body
+for($i=0;$i<strlen($mesg);$i++){
+		
+		while ($mesg[$i]!=':') {
+			
+			$i++;
+		}
+			# code...
+		
+		if($mesg[$i]==':'){
+			while ($mesg[$i]!=',') {
+				$lat=$lat.$mesg[$i+1]; 
 				$i++;
-			}
-			while($meesgae[$i]!=',')
-			{
-				$i++;
-			}
-			if($meesgae[$i]==',')
-			{
-				while ($meesgae[$i]!="\n") {
-					$lon=$lon.$meesgae[$i+1];
-					$i++;
-				}
 			}
 			
 		}
-	}
 
-	if(strlen($sendNum)>10)
+		for($j=0;$j<strlen($lat)-1;$j++){
+			$lat1[$j]=$lat[$j];
+		}
+
+
+
+		while ($mesg[$i]!=':') {
+			
+			$i++;
+		}
+
+		if($mesg[$i]==':'){
+			while ($i<strlen($mesg)-1) {
+				$lon=$lon.$mesg[$i+1];
+				$i++;
+			}
+		}
+}
+
+$long1=floatval($lon);
+$lat1=floatval($lat);
+
+//verifying number and inserting data in db
+	if(strlen($sendNum)>1)
 	{
-		$sql = "INSERT INTO usermessages(Contact,Message,Latitude,Longitude,Urgency) VALUES ('','','','',1)";
-
-		if(mysqli_query($conn,$sql))
-		{
 		
-
-			echo json_encode(array('response'=>"Message inserted in db successfully..."));
-		}
-		else
+			$sql = "INSERT INTO message(Send_Num,Message,latitude,longitude,urgency) VALUES ('$sendNum','$mesg','$lat1','$long1','1')";
+			$query=mysqli_query($conn,$sql);
+		if($query)
 		{
-			echo json_encode(array('response'=>"Message not inserted..."));
-		}
-
+			echo json_encode(array('response'=>"Message inserted in db successfully..."));
+			exit();
+		}	
 	}
-	
-	
-
-	mysqli_close($conn);
-}
-else
-{
-	echo"Error ";
-}
+mysqli_close($conn);
 ?>

@@ -7,7 +7,7 @@ use Twilio\Rest\Client;
 $servername = "localhost";
 $username = "root";
 $password = "";
-$dbname = "main";
+$dbname = "hamrosurakshya";
 $contact=$_GET['contact'];
 
 // Your Account Sid and Auth Token from twilio.com/user/account
@@ -21,7 +21,7 @@ try
 
 	        $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
 	        $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-	        $stmt = $conn->prepare("SELECT * FROM usersignup WHERE ContactNumber=:var");
+	        $stmt = $conn->prepare("SELECT * FROM signup WHERE ContactNumber=:var");
 	        $stmt->bindParam(':var', $contact);
 	        $stmt->execute();
 	        $result = $stmt->setFetchMode(PDO::FETCH_ASSOC);
@@ -36,7 +36,7 @@ try
 					$contact, // to number 
 					array(
 					'from' => '+14142065936', //twilio phone number 
-					'body' => "Oi Badarni, Nikita k gardai xas:D ...."
+					'body' => "From:Hamrosurakshya\nMessage:We have receved your message.Our rescue team will reach you as soon as possible."
 					)
 					);
 
@@ -44,7 +44,7 @@ try
 					$One, // to number 
 					array(
 					'from' => '+14142065936', //twilio phone number 
-					'body' => "Oi Badarni, Nikita k gardai xas :D .... "
+					'body' => "From:Hamrosurakshya\n Message:Your dear one needs your help, Find him/her as soon as possible.location:http://maps.google.com/?q=27.7172,85.3240 "
 					)
 					);
 
@@ -52,7 +52,7 @@ try
 					$Two, // to number 
 					array(
 					'from' => '+14142065936', //twilio phone number 
-					'body' => "Oi Badarni, Nikita k gardai xas .... "
+					'body' => "From:Hamrosurakshya\nMessage:Your dear one needs your help, Find him/her as soon as possible.location:http://maps.google.com/?q=27.7172,85.3240"
 					)
 					);
 					$ans="Confirmation has been sent to User: ".$contact.", SOS1: ".$One." SOS2: ".$Two;

@@ -7,7 +7,7 @@ header("Content-Type: application/json");
     $password = "";
     try
     {
-      $conn = new PDO("mysql:host=$servername;dbname=Main", $username, $password); //connection to database already here
+      $conn = new PDO("mysql:host=$servername;dbname=hamrosurakshya", $username, $password); //connection to database already here
       $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);// set the PDO error mode to exception
    }
     catch(PDOException $e)
@@ -15,7 +15,7 @@ header("Content-Type: application/json");
       echo "Connection failed: " . $e->getMessage();
     }
 
-    $stmt = $conn->prepare("SELECT * FROM usermessages WHERE Urgency=1 LIMIT 7");
+    $stmt = $conn->prepare("SELECT * FROM message WHERE urgency=1 LIMIT 7");
     $stmt->execute();
     try
     {

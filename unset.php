@@ -3,8 +3,8 @@ header("Content-Type: application/json");
 $servername = "localhost";
 $username = "root";
 $password = "";
-$dbname = "Main";
-$contact=$_GET['contact'];
+$dbname = "hamrosurakshya";
+$contact=$_GET['ContactNumber'];
 
 
     try {
@@ -17,17 +17,17 @@ $contact=$_GET['contact'];
            
 
             /* IMPORT URGENCY VALUE OF ROW FOR WHICH EMAIL IS GIVEN*/
-            $stmt = $conn->prepare("UPDATE usermessages SET Urgency=1 WHERE Contact=:var");
+            $stmt = $conn->prepare("UPDATE message SET urgency=0 WHERE Send_Num=:var");
             $stmt->bindParam(':var', $contact);
             $stmt->execute();
          
             /*CHECK IS UNSET OR NOT*/
-            $stmt = $conn->prepare("SELECT * FROM usermessages WHERE Contact=:var");
+            $stmt = $conn->prepare("SELECT * FROM message WHERE Send_Num=:var");
             $stmt->bindParam(':var', $contact);
             $stmt->execute();
             $result = $stmt->setFetchMode(PDO::FETCH_ASSOC);
             $result=$stmt->fetchAll();
-            echo json_encode($result[0]['Urgency']);
+            echo json_encode($result[0]['urgency']);
     
         }
     catch(PDOException $e)

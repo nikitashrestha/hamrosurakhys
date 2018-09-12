@@ -1,20 +1,22 @@
 var subject;
 var image;
 var content;
-var decode;
+var decode; //stores all image reports 
 var balla;
+
 
 function Refresh()
 {
-	balla=this.responseText;
-	xmlhttp = new XMLHttpRequest();
+	alert("Inside refresh list..");
+
+	var xmlhttp = new XMLHttpRequest();
 	xmlhttp.onreadystatechange = function() 
 	{
 		if (this.readyState == 4 && this.status == 200)
 		{
 			balla=this.responseText;
 			decode=JSON.parse(balla);
-			alert("shristi is great");
+			//alert("shristi is great"+decode.length);
 			document.getElementById("OneList").innerHTML=decode[0].Subject;
 			document.getElementById("TwoList").innerHTML=decode[1].Subject;
 			document.getElementById("ThreeList").innerHTML=decode[2].Subject;
@@ -25,18 +27,28 @@ function Refresh()
 			document.getElementById("EightList").innerHTML=decode[7].Subject;
 			document.getElementById("NineList").innerHTML=decode[8].Subject;	
 			document.getElementById("TenList").innerHTML=decode[9].Subject;	
-
 		}
 	};
-	xmlhttp.open("GET", "listrefresh.php", true);
+	xmlhttp.open("GET", "listrefresh.php", true); //refreshh the list from here
 	xmlhttp.send();	
-
+	//return true;
 }
+
+
+
+
 function Click(value)
 {
+
+	document.getElementById("Subject1").innerHTML="Subject:";
+	document.getElementById("Content1").innerHTML="Contents";
+	document.getElementById("OneUser1").innerHTML="ContactNumber:";
 	document.getElementById("Subject").innerHTML=decode[value].Subject;
-	document.getElementById("caption").innerHTML=decode[value].ImagePath;
-	document.getElementById("Image").src=decode[value].ImagePath;
 	document.getElementById("Content").innerHTML=decode[value].Content;
-	document.getElementById("OneUser").innerHTML=decode[value].Email;
+	document.getElementById("OneUser").innerHTML=decode[value].ContactNumber;
+	document.getElementById('1').src= decode[value].Image;
+	//getvalue();
+	//ImageLoad(decode[value].ImagePath);
 }
+
+

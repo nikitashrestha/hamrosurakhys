@@ -1,9 +1,12 @@
-
+body
+{
+    width: 100%;
+}
 .button {
 	height: auto;
 	width: 70%;
     color: #3a648e;
-    padding: 2px;
+    padding: 4pt;
     border: none;
     background-color: #ffffff;
     opacity:0.6;
@@ -20,9 +23,8 @@
 }
 
 #whole{
-	margin-top: 3%;
 	padding: 2px;
-
+    margin-left: 10px;
 }
 .row{
 	margin: 2pt;
@@ -33,7 +35,7 @@
 	width: 77%;
     color: #090e61;
     margin: 2%;
-    padding: 4pt;
+    padding: 8pt;
     border: none;
     background-color: #ffffff;
 }
@@ -48,5 +50,39 @@
     opacity: none;
     font-size: 17pt;
     box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+
 }
 
+
+h4{
+     font-family: arial, sans-serif;
+}
+table, th, td {
+  
+    border-collapse: collapse;
+    font-family: arial, sans-serif;
+}
+th, td {
+    padding: 5px;
+    text-align: left;
+    border: 1px solid #dddddd;
+}
+
+tr:nth-child(even) {
+    background-color: #dddddd;
+}
+
+footer{
+    color:#161b1c;
+    font-size: 23pt;
+    font-style: lighter;
+    height:10.5%;
+    width: auto;
+    text-align: center;
+    margin-top: 1px solid;
+}
+
+
+a:hover{
+    color :#dddddd;
+}

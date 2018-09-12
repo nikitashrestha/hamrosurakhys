@@ -1,7 +1,18 @@
-<?php echo'
-<input type="button" value="Refresh" id="refresh" onclick="Click();">
+<?php
 
-	<div class="row" id="One">
+  echo'
+<div class="row">
+	<table class="t1">
+	<tr>
+	<td><a href="userreport.php" id="linkimage"><input type="button" id="imagerefresh" value="Image Report"></a></td>
+	<td><input type="button" value="New Message" id="refresh" onclick="Click();"></td>
+	</tr>
+	</table>
+</div>
+
+
+
+	<div class="row" id="One" style="margin-top:40px;">
 		<div class="row" id="V1">
 			<div class="col"></div>
 		</div>
@@ -84,5 +95,9 @@
 			</div>
 		</div>
 	</div>
+
 	';
+
+
+ 
 ?>

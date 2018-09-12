@@ -14,7 +14,7 @@
 	
 		<div class="container-fluid display-2" id="title">HamroSurakshya</div>
 		<div class="container rounded col-7" id="form">
-			<form>
+			<form method="POST" action="map.php">
 				<div class="form-group row col-7">
 					<label for="exampleInputEmail1">Email address</label>
 					<input type="email" class="form-control" name="Email" id="Email" aria-describedby="emailHelp" placeholder="Enter email">
@@ -25,7 +25,7 @@
 					<input type="password" class="form-control" name="Password" id="Password" placeholder="Password" >
 				</div>
 				<br>
-				<button type="submit" class="btn btn-primary" onclick="Submit();">Submit</button>
+				<button type="submit" class="btn btn-primary">Submit</button>
 			</form>
 		</div>
 
